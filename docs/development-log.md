@@ -84,3 +84,18 @@ The next action will be the initialization of the Django project that will serve
 
 This will create the core backend environment where future apps, models, and business logic will be implemented.
 
+## Stage 1 – Backend Initialization
+
+This stage marks the beginning of the backend implementation of the ticketing system.
+
+The goal of this stage is to initialize the Django backend project that will serve as the core of the application.
+
+During this stage the following will happen:
+
+- creation of the Django project
+- verification that the Django server runs locally
+- preparation of the backend environment for future apps
+
+No business logic will be implemented yet.  
+This stage focuses only on establishing the working backend foundation.
+
