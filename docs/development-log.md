@@ -56,3 +56,21 @@ Django is chosen because it provides:
 
 This framework will serve as the foundation for managing events, tickets, and ticket validation in the system.
 
+## Step 0.3 – Backend Project Structure
+
+At this step the high-level backend structure of the project is defined.
+
+The backend will consist of a Django project that will contain multiple apps responsible for different parts of the system.
+
+The first app planned for the system will manage events and tickets.
+
+The backend will eventually support:
+
+- event creation and management
+- ticket generation
+- ticket sales tracking
+- ticket validation at event entry
+
+At this stage no Django project has been created yet.  
+This step documents the intended backend structure before implementation begins.
+
