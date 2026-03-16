@@ -74,3 +74,13 @@ The backend will eventually support:
 At this stage no Django project has been created yet.  
 This step documents the intended backend structure before implementation begins.
 
+## Step 0.4 – Preparing Django Project Initialization
+
+At this step the project is ready to begin backend implementation.
+
+The Django framework has been selected and the backend structure has been conceptually defined.
+
+The next action will be the initialization of the Django project that will serve as the foundation of the ticketing backend.
+
+This will create the core backend environment where future apps, models, and business logic will be implemented.
+
