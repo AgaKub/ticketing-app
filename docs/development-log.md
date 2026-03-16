@@ -39,3 +39,20 @@ Added a `docs` directory and a `development-log.md` file to record the evolution
 
 Purpose:
 To keep track of architectural decisions and development steps while building the project.
+
+## Step 0.2 – Backend Framework Selection
+
+At this step the backend framework for the project is defined.
+
+The ticketing system backend will be built using Django.
+
+Django is chosen because it provides:
+
+- a mature and stable web framework
+- a built-in database ORM
+- a powerful administrative interface
+- strong security features
+- rapid development capabilities
+
+This framework will serve as the foundation for managing events, tickets, and ticket validation in the system.
+
