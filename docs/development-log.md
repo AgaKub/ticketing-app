@@ -227,6 +227,22 @@ Creating the app will generate a new folder with the standard Django structure, 
 
 This establishes the modular architecture of the backend.
 
+### Step 2.3 – Register the Events App
+
+After creating the `events` app, the Django project must be informed that this app is part of the system.
+
+This is done by adding the app to the `INSTALLED_APPS` list in the project settings.
+
+Registering the app allows Django to:
+
+- recognize the app as part of the project
+- include its models in migrations
+- make its admin configuration available
+- prepare it for future development
+
+At this step no business logic is added yet.  
+The goal is only to connect the new app to the Django project.
+
 
 
 
