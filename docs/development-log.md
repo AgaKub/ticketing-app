@@ -209,6 +209,24 @@ Its purpose is to provide a dedicated module for the future implementation of:
 At this step the app is only being defined conceptually.  
 The technical creation of the app will happen next.
 
+### Step 2.2 – Create the Events App
+
+In this step the first Django app will be created.
+
+The app name will be `events`.
+
+This app will become a separate module within the project and will contain all logic related to events.
+
+Creating the app will generate a new folder with the standard Django structure, including:
+
+- models.py
+- views.py
+- admin.py
+- apps.py
+- migrations/
+
+This establishes the modular architecture of the backend.
+
 
 
 
