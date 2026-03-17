@@ -176,6 +176,40 @@ This confirms that:
 The backend foundation is now complete.
 
 
+## Stage 2 – First Backend App
+
+This stage begins the creation of the first application-specific backend module.
+
+The goal of this stage is to create the first Django app that will hold the core business logic of the ticketing system.
+
+This app will become the place where event-related functionality will be developed.
+
+During this stage the following will happen:
+
+- creation of the first Django app
+- registration of the app in the Django project
+- preparation for future models such as events and tickets
+
+At this point no custom business models are implemented yet.  
+This stage begins the modular structure of the backend.
+
+### Step 2.1 – Define the Events App
+
+The first backend app of the system will be the `events` app.
+
+This app will be responsible for the event-related part of the ticketing system.
+
+Its purpose is to provide a dedicated module for the future implementation of:
+
+- event creation
+- event details
+- event management
+- relationships between events and tickets
+
+At this step the app is only being defined conceptually.  
+The technical creation of the app will happen next.
+
+
 
 
 
