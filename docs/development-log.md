@@ -1,4 +1,5 @@
 # Ticketing App – Development Log
+
 Stage 0 – Preparation
 Stage 1 – Backend foundation
 Stage 2 – Event model
@@ -6,6 +7,8 @@ Stage 3 – Ticket model
 Stage 4 – Sales flow
 Stage 5 – Ticket validation
 Stage 6 – Payment integration
+
+
 
 ## Stage 0 – Project Preparation
 
@@ -84,6 +87,8 @@ The next action will be the initialization of the Django project that will serve
 
 This will create the core backend environment where future apps, models, and business logic will be implemented.
 
+
+
 ## Stage 1 – Backend Initialization
 
 This stage marks the beginning of the backend implementation of the ticketing system.
@@ -98,4 +103,24 @@ During this stage the following will happen:
 
 No business logic will be implemented yet.  
 This stage focuses only on establishing the working backend foundation.
+
+### Step 1.1 – Django Project Creation
+
+This step begins the technical implementation of the backend.
+
+The Django project will be created in the repository to serve as the core backend application.
+
+The Django project will provide:
+
+- the main application configuration
+- the backend server
+- the base structure for future Django apps
+- database connection and configuration
+
+This project will later host apps responsible for managing events, tickets, and ticket validation.
+
+
+
+
+
 
