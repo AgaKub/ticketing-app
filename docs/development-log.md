@@ -161,6 +161,20 @@ Running migrations will:
 
 This step will complete the basic backend setup required for further development.
 
+### Step 1.5 – Database Initialization Completed
+
+Database migrations were successfully applied.
+
+All default Django tables for built-in applications (admin, authentication, sessions, content types) were created in the SQLite database.
+
+This confirms that:
+
+- the database is correctly configured
+- the backend is fully initialized
+- the system is ready to store application data
+
+The backend foundation is now complete.
+
 
 
 
