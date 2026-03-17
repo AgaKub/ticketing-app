@@ -145,6 +145,22 @@ A message indicated that there are unapplied migrations, which means the databas
 
 This will be handled in the next step.
 
+### Step 1.4 – Apply Database Migrations
+
+At this step the initial database structure will be created.
+
+Django includes built-in applications (such as admin, authentication, and sessions) that require database tables.
+
+Migrations are used to apply these structures to the database.
+
+Running migrations will:
+
+- create the necessary database tables
+- initialize the database schema
+- prepare the system for storing data
+
+This step will complete the basic backend setup required for further development.
+
 
 
 
