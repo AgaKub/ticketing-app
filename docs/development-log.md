@@ -243,6 +243,20 @@ Registering the app allows Django to:
 At this step no business logic is added yet.  
 The goal is only to connect the new app to the Django project.
 
+### Step 2.4 – Verify App Registration
+
+After adding the `events` app to INSTALLED_APPS, the app is now fully registered in the Django project.
+
+This means Django recognizes the app as part of the system and will include it in:
+
+- database migrations
+- admin panel configuration
+- future development processes
+
+At this stage no models are defined yet, so no new migrations are expected.
+
+This step confirms that the modular structure of the backend is working correctly.
+
 
 
 
