@@ -119,6 +119,18 @@ The Django project will provide:
 
 This project will later host apps responsible for managing events, tickets, and ticket validation.
 
+### Step 1.2 – Verify Django Server
+
+The Django project already exists in the repository under the `config` directory.
+
+At this step the goal is to verify that the Django development server runs correctly in the local environment.
+
+Running the server confirms that:
+
+- the Django installation is working
+- the project configuration is correct
+- the backend environment is ready for further development
+
 
 
 
