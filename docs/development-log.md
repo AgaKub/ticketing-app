@@ -132,6 +132,19 @@ Running the server confirms that:
 - the backend environment is ready for further development
 
 
+### Step 1.3 – Run Django Development Server
+
+The Django development server was started to verify that the backend runs correctly.
+
+The server started successfully, confirming that:
+
+- the Django project is correctly configured
+- the local development environment is working
+
+A message indicated that there are unapplied migrations, which means the database structure has not yet been initialized.
+
+This will be handled in the next step.
+
 
 
 
