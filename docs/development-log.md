@@ -359,3 +359,23 @@ The relationship between TicketType and Event was also established through a for
 
 This marks the completion of the first custom data model implementation in the project.
 
+
+
+## Stage 3 – Admin Interface
+
+This stage introduces the Django admin panel as a way to interact with the system data.
+
+The admin panel allows creating, editing, and managing data directly through a web interface.
+
+### Step 3.1 – Register Models in Admin
+
+At this step the Event and TicketType models will be registered in the Django admin panel.
+
+Registering models allows them to be visible and manageable through the admin interface.
+
+This enables:
+
+- creating events
+- adding ticket types
+- managing data without writing code
+
