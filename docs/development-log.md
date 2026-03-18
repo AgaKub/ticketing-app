@@ -346,3 +346,16 @@ It will also establish the relationship between these models through a foreign k
 
 This step completes the process of translating model definitions into a working database structure.
 
+### Step 2.11 – Events App Database Tables Created
+
+The migrations for the `events` app were successfully applied.
+
+This created the first custom business tables in the database:
+
+- Event
+- TicketType
+
+The relationship between TicketType and Event was also established through a foreign key.
+
+This marks the completion of the first custom data model implementation in the project.
+
