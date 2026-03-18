@@ -485,3 +485,14 @@ At this step the Buy button will stop being only a visual element and will begin
 
 The goal is to connect ticket selection with the beginning of checkout.
 
+### Step 4.2 – Buy Button Interaction
+
+The Buy button was connected to the ticket selection logic.
+
+When clicked, it reads:
+- selected quantity
+- ticket type
+
+and confirms the selection via a temporary alert.
+
+This step validates that user interaction is correctly captured before moving to checkout implementation.
