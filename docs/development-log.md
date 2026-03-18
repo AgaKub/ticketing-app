@@ -294,3 +294,17 @@ The Event model will include fields such as:
 
 This step introduces the first custom database model in the system.
 
+#### Update – Event Model Design Adjustment
+
+During the design review it was identified that a single price per event is not sufficient for real-world ticketing scenarios.
+
+Most events include multiple ticket types (e.g. Early Bird, Regular, VIP), each with different pricing and availability.
+
+To support this, the data model will be adjusted:
+
+- the Event model will no longer contain price and capacity
+- a new model (TicketType) will be introduced
+- each Event will be able to have multiple TicketTypes
+
+This adjustment improves the flexibility and realism of the system and aligns it with real promoter needs.
+
