@@ -257,7 +257,40 @@ At this stage no models are defined yet, so no new migrations are expected.
 
 This step confirms that the modular structure of the backend is working correctly.
 
+### Step 2.5 – Define the Event Model
 
+At this step the first data model of the system will be introduced.
 
+The Event model will represent a single event created by a promoter.
 
+This model will later store essential event information such as:
+
+- event name
+- venue
+- date
+- ticket price
+- ticket quantity
+- description
+
+At this stage the model is only defined conceptually.  
+The actual implementation will follow in the next step.
+
+This is the first step toward building the core business logic of the ticketing system.
+
+### Step 2.6 – Implement the Event Model
+
+At this step the Event model will be implemented in the `events` app.
+
+The model will define the structure of event data stored in the database.
+
+The Event model will include fields such as:
+
+- name (event name)
+- venue (event location)
+- date (event date)
+- price (ticket price)
+- capacity (number of tickets available)
+- description (event details)
+
+This step introduces the first custom database model in the system.
 
