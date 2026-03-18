@@ -379,3 +379,13 @@ This enables:
 - adding ticket types
 - managing data without writing code
 
+### Step 3.4 – Improve Event Admin with Inline Ticket Types
+
+At this step the admin interface for Event will be improved.
+
+The goal is to display related TicketType records directly inside the Event admin page.
+
+This will make the admin workflow more natural by allowing ticket types to be managed from within the corresponding event.
+
+This improves usability and reflects the real business relationship between events and ticket types.
+
