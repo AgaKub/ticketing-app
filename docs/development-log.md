@@ -333,3 +333,16 @@ Django generated an initial migration file containing instructions to create:
 
 This confirms that the model definitions are valid and ready to be applied to the database.
 
+### Step 2.10 – Apply Migrations for Events App
+
+At this step the previously created migrations will be applied to the database.
+
+Applying migrations will create the actual database tables for:
+
+- Event
+- TicketType
+
+It will also establish the relationship between these models through a foreign key.
+
+This step completes the process of translating model definitions into a working database structure.
+
