@@ -308,3 +308,17 @@ To support this, the data model will be adjusted:
 
 This adjustment improves the flexibility and realism of the system and aligns it with real promoter needs.
 
+### Step 2.8 – Prepare Database Migrations for Event and TicketType
+
+At this step the custom models defined in the `events` app will be translated into database changes.
+
+Django uses migrations to convert model definitions into database table structures.
+
+Running migrations for these models will create:
+
+- an Event table
+- a TicketType table
+- a relationship between TicketType and Event through a foreign key
+
+This step turns the first custom business models of the system into real database structures.
+
