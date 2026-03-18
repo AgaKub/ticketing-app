@@ -322,3 +322,14 @@ Running migrations for these models will create:
 
 This step turns the first custom business models of the system into real database structures.
 
+### Step 2.9 – Create Initial Migrations for Events App
+
+The first custom migrations for the `events` app were created successfully.
+
+Django generated an initial migration file containing instructions to create:
+
+- the Event model
+- the TicketType model
+
+This confirms that the model definitions are valid and ready to be applied to the database.
+
