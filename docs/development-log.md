@@ -389,3 +389,99 @@ This will make the admin workflow more natural by allowing ticket types to be ma
 
 This improves usability and reflects the real business relationship between events and ticket types.
 
+
+## Stage 4 – Public Interface
+
+This stage introduces the user-facing part of the application.
+
+The goal is to allow users (buyers) to:
+
+- view available events
+- open event details
+- see available ticket types
+
+This is the first step toward building the ticket purchasing experience.
+
+### Step 4.1 – Create Event List View
+
+A view was created to display all available events.
+
+This view retrieves all Event objects from the database and passes them to a template.
+
+The page is accessible at:
+
+/ (root URL)
+
+### Step 4.2 – Create Event List Template
+
+A template was created to display the list of events.
+
+The template shows:
+
+- event name
+- venue
+- date
+
+Each event is clickable and links to its detail page.
+
+### Step 4.3 – Create Event Detail View
+
+A view was created to display a single event.
+
+The view retrieves:
+
+- event details
+- related ticket types
+
+Ticket types are accessed using the related_name defined in the model.
+
+### Step 4.4 – Fix Reverse Relationship
+
+An error occurred when accessing ticket types from the Event model.
+
+The issue was caused by missing related_name in the ForeignKey.
+
+The model was updated:
+
+ForeignKey(Event, related_name='ticket_types')
+
+This allows access via:
+
+event.ticket_types.all()
+
+### Step 4.5 – Create Event Detail Template
+
+A template was created to display:
+
+- event name
+- venue
+- date
+- ticket types
+
+Each ticket type displays:
+
+- name
+- price
+- available quantity
+
+### Step 4.6 – Add Buy Button
+
+A "Buy" button was added next to each ticket type.
+
+This is the first step toward implementing ticket purchasing.
+
+No functionality is implemented yet.
+
+The button prepares the UI for future interaction (form submission).
+
+
+## Stage 4 – Buyer Interface
+
+This stage introduces the first buyer-facing purchase interaction.
+
+### Step 4.1 – Prepare Buy Button Flow
+
+At this step the Buy button will stop being only a visual element and will begin passing the selected ticket type and quantity to the next step of the purchase flow.
+
+The goal is to connect ticket selection with the beginning of checkout.
+
