@@ -496,3 +496,55 @@ When clicked, it reads:
 and confirms the selection via a temporary alert.
 
 This step validates that user interaction is correctly captured before moving to checkout implementation.
+
+### Step 4.3 – Multi-Ticket Selection Flow
+
+The buyer-facing event page was redesigned to support selecting multiple ticket types in a single order.
+
+The previous approach used a separate Buy button for each ticket type, which did not support mixed selections well.
+
+This was replaced with:
+
+- quantity selectors starting from 0
+- no per-ticket Buy button
+- one shared “Continue to checkout” button
+
+This allows the buyer to build a ticket selection across multiple ticket types before moving forward.
+
+### Step 4.4 – Shared Checkout Entry
+
+The shared “Continue to checkout” button was connected to the selected ticket quantities.
+
+Only ticket types with quantity greater than 0 are passed to checkout.
+
+If no tickets are selected, checkout is not allowed.
+
+This establishes the first basket-style selection flow on the buyer side.
+
+
+### Step 4.5 – Multi-Ticket Checkout View
+
+The checkout step was updated to support multiple selected ticket types.
+
+Instead of expecting a single `ticket` and `qty`, the checkout logic now reads multiple ticket selections from the request and displays them as a grouped summary.
+
+This allows the buyer to review the full ticket selection before continuing.
+
+### Step 4.6 – Multi-Ticket Email Step
+
+The email step was updated to support multiple selected ticket types.
+
+The selected tickets and their quantities are preserved when moving from checkout to the email step.
+
+This keeps the purchase flow consistent for mixed ticket selections.
+
+### Step 4.7 – Email Justification Restored
+
+The email step includes a clear explanation of why the buyer’s email is required.
+
+The wording explains that the ticket and payment confirmation will be sent to the provided email address.
+
+A checkbox was also included to confirm agreement to receive ticket- and event-related information.
+
+This improves trust, clarity, and legal readiness in the purchase flow.
+
