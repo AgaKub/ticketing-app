@@ -607,3 +607,25 @@ The payment page now displays:
 - total order value
 
 This ensures that pricing is accurate and cannot be manipulated from the frontend.
+
+
+## Stage 5 – Order Layer
+
+This stage introduces the first order-related business structure in the system.
+
+The goal is to create a real Order model that will store the buyer’s purchase before payment integration is added.
+
+This will allow the application to move from temporary flow logic to persistent order handling.
+
+### Step 5.1 – Prepare Order Model
+
+At this step the order layer is defined conceptually.
+
+The Order model will represent a buyer’s purchase and will later connect:
+
+- buyer email
+- selected tickets
+- order total
+- payment status
+
+This model will become the foundation for future payment integration and ticket generation.
