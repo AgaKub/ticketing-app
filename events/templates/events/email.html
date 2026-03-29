@@ -1,0 +1,37 @@
+<h1>Enter your email</h1>
+
+{% for item in selections %}
+    <p>{{ item.qty }} × {{ item.ticket }}</p>
+{% endfor %}
+
+<p>Your ticket and payment confirmation will be sent to your email.</p>
+
+<input type="email" id="email" placeholder="Your email">
+
+<br><br>
+
+<label>
+    <input type="checkbox" required>
+    I agree to receive my ticket and event-related information and accept the 
+    <a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+</label>
+
+<br><br>
+
+<button type="button" onclick="goToPayment()">Continue</button>
+
+<script>
+function goToPayment() {
+    let email = document.getElementById('email').value;
+
+    if (!email) {
+        alert("Please enter your email.");
+        return;
+    }
+
+    let params = new URLSearchParams(window.location.search);
+    params.append("email", email);
+
+    window.location.href = "/payment-step/?" + params.toString();
+}
+</script>

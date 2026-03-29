@@ -5,12 +5,101 @@
 
 <h2>Tickets</h2>
 
-{% for ticket in tickets %}
-    <div>
-        <p>{{ ticket.name }}</p>
-        <p>Price: {{ ticket.price }}</p>
-        <p>Available: {{ ticket.quantity }}</p>
+{% for item in ticket_data %}
+    {% with ticket=item.ticket save=item.save_percent %}
+        <div style="margin-bottom:20px; border:1px solid #ccc; padding:10px;">
 
-        <button>Buy</button>
-    </div>
+            <p><strong>{{ ticket.name }}</strong></p>
+            <p>Price: £<span class="unit-price">{{ ticket.price }}</span></p>
+
+            {% if save %}
+                <p>Save {{ save }}% vs General Admission</p>
+            {% endif %}
+
+            {% if ticket.is_active %}
+                <p>Available: {{ ticket.quantity }}</p>
+
+                <div class="ticket-box" data-ticket-name="{{ ticket.name }}">
+                    <button type="button" onclick="decrease(this)">-</button>
+                    <span class="qty">0</span>
+                    <button type="button" onclick="increase(this)">+</button>
+                </div>
+
+            {% else %}
+                <p>Available after Early Bird</p>
+            {% endif %}
+
+        </div>
+    {% endwith %}
 {% endfor %}
+
+<button type="button" id="checkout-btn" onclick="goToCheckout()" disabled>
+    Continue to checkout
+</button>
+
+<script>
+function updateCheckoutButton() {
+    let boxes = document.querySelectorAll('.ticket-box');
+    let checkoutBtn = document.getElementById('checkout-btn');
+    let hasSelection = false;
+
+    boxes.forEach(box => {
+        let qty = parseInt(box.querySelector('.qty').innerText);
+        if (qty > 0) {
+            hasSelection = true;
+        }
+    });
+
+    checkoutBtn.disabled = !hasSelection;
+}
+
+function increase(btn) {
+    let box = btn.parentElement;
+    let qtyEl = box.querySelector('.qty');
+    let qty = parseInt(qtyEl.innerText);
+
+    qty = qty + 1;
+    qtyEl.innerText = qty;
+
+    updateCheckoutButton();
+}
+
+function decrease(btn) {
+    let box = btn.parentElement;
+    let qtyEl = box.querySelector('.qty');
+    let qty = parseInt(qtyEl.innerText);
+
+    if (qty > 0) {
+        qty = qty - 1;
+    }
+
+    qtyEl.innerText = qty;
+
+    updateCheckoutButton();
+}
+
+function goToCheckout() {
+    let boxes = document.querySelectorAll('.ticket-box');
+    let params = new URLSearchParams();
+    let hasSelection = false;
+
+    boxes.forEach(box => {
+        let ticketName = box.dataset.ticketName;
+        let qty = parseInt(box.querySelector('.qty').innerText);
+
+        if (qty > 0) {
+            params.append(ticketName, qty);
+            hasSelection = true;
+        }
+    });
+
+    if (!hasSelection) {
+        alert("Please select at least one ticket.");
+        return;
+    }
+
+    window.location.href = "/checkout/?" + params.toString();
+}
+
+document.addEventListener('DOMContentLoaded', updateCheckoutButton);
+</script>

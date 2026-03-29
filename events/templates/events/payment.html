@@ -1,0 +1,13 @@
+<h1>Order Summary</h1>
+
+{% for item in selections %}
+    <p>{{ item.qty }} × {{ item.ticket }}</p>
+{% endfor %}
+
+<br>
+
+<p>Email: {{ email }}</p>
+
+<br><br>
+
+<button type="button">Pay now</button>

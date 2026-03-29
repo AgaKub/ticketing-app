@@ -17,7 +17,9 @@ class TicketType(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='ticket_types')
     quantity = models.IntegerField()
+    is_active = models.BooleanField(default=True)
 
+    
     def __str__(self):
         return f"{self.name} - {self.event.name}"
     

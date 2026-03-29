@@ -1,0 +1,16 @@
+<h1>Checkout</h1>
+
+{% for item in selections %}
+    <p>Ticket: {{ item.ticket }}</p>
+    <p>Quantity: {{ item.qty }}</p>
+    <br>
+{% endfor %}
+
+<button type="button" onclick="goToEmail()">Continue</button>
+
+<script>
+function goToEmail() {
+    let params = new URLSearchParams(window.location.search);
+    window.location.href = "/email-step/?" + params.toString();
+}
+</script>
