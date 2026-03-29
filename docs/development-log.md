@@ -548,3 +548,42 @@ A checkbox was also included to confirm agreement to receive ticket- and event-r
 
 This improves trust, clarity, and legal readiness in the purchase flow.
 
+
+### Step 4.8 – Payment Step as Order Review
+
+The payment step will be upgraded from a placeholder into an order review page.
+
+At this step, the goal is to display the buyer’s current order before real payment integration is added.
+
+The payment step should show:
+
+- selected ticket types
+- selected quantities
+- buyer email
+
+This creates a clear pre-payment stage in the purchase flow and prepares the application for future payment integration.
+
+I agree to receive my ticket and event-related information and accept the 
+<a href="/privacy-policy/" target="_blank">Privacy Policy</a>
+
+
+### Step 4.9 – Minimal Privacy Policy (MVP)
+
+A minimal privacy policy page was introduced to support transparent handling of personal data.
+
+At this stage, the application collects only the buyer’s email address, which is used exclusively for:
+
+- sending the ticket
+- providing payment confirmation
+- sharing essential event-related information
+
+The privacy policy clearly communicates that:
+
+- the email is not used for marketing purposes
+- data is not shared with third parties except where necessary to process the purchase
+
+A link to the privacy policy was added to the email step, and user consent is required before continuing.
+
+This establishes a basic legal and trust layer for the purchase flow.
+
+
