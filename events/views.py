@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Event
-
+from .models import TicketType
 
 
 def event_list(request):
@@ -82,20 +82,33 @@ def email_step(request):
 def payment_step(request):
     selections = []
     email = request.GET.get('email')
+    total = 0
 
     for key, value in request.GET.items():
         if key != 'email' and value.isdigit() and int(value) > 0:
-            selections.append({
-                'ticket': key,
-                'qty': value
-            })
+            try:
+                ticket = TicketType.objects.get(name=key)
+                qty = int(value)
+                subtotal = ticket.price * qty
+                total += subtotal
+
+                selections.append({
+                    'ticket': ticket.name,
+                    'qty': qty,
+                    'price': ticket.price,
+                    'subtotal': subtotal
+                })
+
+            except TicketType.DoesNotExist:
+                continue
 
     if not selections or not email:
         return redirect('/')
 
     return render(request, 'events/payment.html', {
         'selections': selections,
-        'email': email
+        'email': email,
+        'total': total
     })
 
 

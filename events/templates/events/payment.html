@@ -1,8 +1,12 @@
 <h1>Order Summary</h1>
 
 {% for item in selections %}
-    <p>{{ item.qty }} × {{ item.ticket }}</p>
+    <p>{{ item.qty }} × {{ item.ticket }} (£{{ item.price }}) = £{{ item.subtotal }}</p>
 {% endfor %}
+
+<br>
+
+<p><strong>Total: £{{ total }}</strong></p>
 
 <br>
 

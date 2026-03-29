@@ -629,3 +629,16 @@ The Order model will represent a buyer’s purchase and will later connect:
 - payment status
 
 This model will become the foundation for future payment integration and ticket generation.
+
+### Step 5.2 – Link Order to Event
+
+The Order model was extended with a relationship to Event.
+
+This reflects the rule that one order belongs to one event, even when the event contains multiple ticket types (for example, a multi-day festival with different ticket options).
+
+The relationship was added as a foreign key from Order to Event.
+
+During migration, the field was temporarily made nullable to avoid conflicts with existing rows in the database.
+
+This prepares the order layer for real order creation in the purchase flow.
+
