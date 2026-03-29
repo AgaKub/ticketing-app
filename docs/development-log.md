@@ -586,4 +586,24 @@ A link to the privacy policy was added to the email step, and user consent is re
 
 This establishes a basic legal and trust layer for the purchase flow.
 
+### Step 4.10 – Backend Total Calculation
 
+The payment step was upgraded to calculate the total order value in the backend.
+
+Instead of relying on frontend data, ticket prices are now retrieved from the database.
+
+For each selected ticket type:
+- the system reads the ticket price
+- multiplies it by the selected quantity
+- calculates a subtotal
+
+All subtotals are then summed to produce the final order total.
+
+The payment page now displays:
+- ticket name
+- quantity
+- unit price
+- subtotal per ticket type
+- total order value
+
+This ensures that pricing is accurate and cannot be manipulated from the frontend.
