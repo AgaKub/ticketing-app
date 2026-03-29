@@ -642,3 +642,20 @@ During migration, the field was temporarily made nullable to avoid conflicts wit
 
 This prepares the order layer for real order creation in the purchase flow.
 
+### Step 5.3 – Introduce Order Items
+
+The Order model currently stores only summary-level information such as email, total, and event.
+
+To properly represent what the customer purchased, a new structure is needed.
+
+Each order can contain multiple ticket types with different quantities.
+
+To support this, an OrderItem model will be introduced.
+
+OrderItem will represent a single line in the order and will connect:
+- the order
+- the ticket type
+- the quantity
+
+This allows the system to store detailed purchase data and prepares the foundation for ticket generation and entry validation.
+
