@@ -1,6 +1,8 @@
+import email
+
 from django.shortcuts import render, redirect
-from .models import Event
-from .models import TicketType
+from .models import Event, Order, TicketType, OrderItem
+
 
 
 def event_list(request):
@@ -79,13 +81,18 @@ def email_step(request):
     })
 
 
+
 def payment_step(request):
     selections = []
     email = request.GET.get('email')
     total = 0
+    selected_tickets = []
 
     for key, value in request.GET.items():
-        if key != 'email' and value.isdigit() and int(value) > 0:
+        if key == 'email':
+            continue
+
+        if value.isdigit() and int(value) > 0:
             try:
                 ticket = TicketType.objects.get(name=key)
                 qty = int(value)
@@ -99,17 +106,44 @@ def payment_step(request):
                     'subtotal': subtotal
                 })
 
+                selected_tickets.append({
+                    'ticket_obj': ticket,
+                    'qty': qty
+                })
+
             except TicketType.DoesNotExist:
                 continue
 
     if not selections or not email:
         return redirect('/')
 
+    event = selected_tickets[0]['ticket_obj'].event
+
+    for item in selected_tickets:
+        if item['ticket_obj'].event != event:
+            return redirect('/')
+
+    order = Order.objects.create(
+        event=event,
+        email=email,
+        total=total
+    )
+
+    for item in selected_tickets:
+        OrderItem.objects.create(
+            order=order,
+            ticket_type=item['ticket_obj'],
+            quantity=item['qty']
+        )
+
     return render(request, 'events/payment.html', {
         'selections': selections,
         'email': email,
-        'total': total
+        'total': total,
+        'order': order
     })
+
+
 
 
 def privacy_policy(request):

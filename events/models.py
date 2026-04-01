@@ -34,3 +34,11 @@ class Order(models.Model):
         return f"Order {self.id} - {self.email}"
     
     
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    ticket_type = models.ForeignKey(TicketType, on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.ticket_type.name} x {self.quantity}"

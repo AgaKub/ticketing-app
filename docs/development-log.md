@@ -659,3 +659,36 @@ OrderItem will represent a single line in the order and will connect:
 
 This allows the system to store detailed purchase data and prepares the foundation for ticket generation and entry validation.
 
+### Step 5.4 – Create OrderItem Model
+
+A new OrderItem model was introduced to store the detailed contents of an order.
+
+While the Order model stores summary-level information such as event, email, and total, the OrderItem model stores the individual ticket selections made by the buyer.
+
+Each OrderItem connects:
+- the order
+- the ticket type
+- the selected quantity
+
+This allows the application to preserve exactly what was purchased and prepares the system for ticket generation, payment reconciliation, and entry validation.
+
+### Step 5.5 – Save Order Items in the Purchase Flow
+
+The payment step was refactored to store detailed ticket selections as OrderItem records.
+
+Instead of only creating an Order summary, the system now also creates one OrderItem for each selected ticket type.
+
+Each OrderItem stores:
+- the order
+- the ticket type
+- the selected quantity
+
+The payment step was improved to:
+
+- validate selected tickets before creating the order
+- determine the correct event from the selected tickets
+- ensure all selected tickets belong to the same event
+- convert quantities to integers before saving
+
+This establishes a proper order structure and allows the application to preserve exactly what the buyer purchased.
+
