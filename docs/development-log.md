@@ -692,3 +692,23 @@ The payment step was improved to:
 
 This establishes a proper order structure and allows the application to preserve exactly what the buyer purchased.
 
+### Step 5.6 – Prepare Cart Reservation Logic
+
+The next step in the user purchase flow is to introduce temporary reservation logic.
+
+At this stage, tickets are reduced immediately when an order is created, even if payment is not completed.
+
+This is acceptable for early testing, but not sufficient for a real ticketing flow.
+
+The system will therefore move toward a reservation-based approach where:
+
+- an order is initially created as pending
+- selected tickets are reserved only for a limited time
+- the buyer must complete payment within that reservation window
+- if payment is not completed in time, the reservation expires and tickets are released back to availability
+
+For the MVP direction, the planned reservation window is 10 minutes.
+
+A maximum ticket limit per order will also be introduced to reduce the risk of one unfinished order blocking too much inventory.
+
+
