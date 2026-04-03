@@ -5,7 +5,6 @@
 
 <h2>Tickets</h2>
 
-<p>Maximum 10 tickets per ticket type in one order. If you need more, please place a separate order.</p>
 
 {% for item in ticket_data %}
     {% with ticket=item.ticket save=item.save_percent %}
@@ -34,6 +33,8 @@
         </div>
     {% endwith %}
 {% endfor %}
+
+<p>Maximum 10 tickets per ticket type in one order. If you need more, please place a separate order.</p>
 
 <button type="button" id="checkout-btn" onclick="goToCheckout()" disabled>
     Continue to checkout
