@@ -28,8 +28,12 @@ class Order(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
     email = models.EmailField()
     total = models.DecimalField(max_digits=8, decimal_places=2)
+
+    status = models.CharField(max_length=20, default='pending')
+    expires_at = models.DateTimeField(null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return f"Order {self.id} - {self.email}"
     
@@ -42,3 +46,5 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.ticket_type.name} x {self.quantity}"
+    
+    

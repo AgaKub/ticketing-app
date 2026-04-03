@@ -2,10 +2,12 @@ import email
 
 from django.shortcuts import render, redirect
 from .models import Event, Order, TicketType, OrderItem
-
+from django.utils import timezone
+from datetime import timedelta  
 
 
 def event_list(request):
+    release_expired_orders()
     events = Event.objects.all()
     return render(request, 'events/event_list.html', {'events': events})
 
@@ -82,7 +84,31 @@ def email_step(request):
 
 
 
+def release_expired_orders():
+    expired_orders = Order.objects.filter(
+        status='pending',
+        expires_at__isnull=False,
+        expires_at__lt=timezone.now()
+    )
+
+    print("EXPIRED ORDERS FOUND:", expired_orders.count())
+
+    for order in expired_orders:
+        items = OrderItem.objects.filter(order=order)
+
+        for item in items:
+            ticket = item.ticket_type
+            ticket.quantity += item.quantity
+            ticket.save()
+
+        order.status = 'expired'
+        order.save()
+        
+
+
 def payment_step(request):
+    release_expired_orders()
+
     selections = []
     email = request.GET.get('email')
     total = 0
@@ -119,22 +145,36 @@ def payment_step(request):
 
     event = selected_tickets[0]['ticket_obj'].event
 
+    # check all tickets belong to the same event
     for item in selected_tickets:
         if item['ticket_obj'].event != event:
             return redirect('/')
 
+    # create order
     order = Order.objects.create(
         event=event,
         email=email,
-        total=total
-    )
+        total=total,
+        status='pending',
+        expires_at=timezone.now() + timedelta(minutes=10)
+         )
 
+    # create order items + reduce stock
     for item in selected_tickets:
-        OrderItem.objects.create(
-            order=order,
-            ticket_type=item['ticket_obj'],
-            quantity=item['qty']
-        )
+        ticket = item['ticket_obj']
+        qty = item['qty']
+
+        if ticket.quantity >= qty:
+            ticket.quantity = ticket.quantity - qty
+            ticket.save()
+
+            OrderItem.objects.create(
+                order=order,
+                ticket_type=ticket,
+                quantity=qty
+            )
+        else:
+            return redirect('/')
 
     return render(request, 'events/payment.html', {
         'selections': selections,
@@ -142,7 +182,6 @@ def payment_step(request):
         'total': total,
         'order': order
     })
-
 
 
 

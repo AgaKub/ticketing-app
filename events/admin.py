@@ -17,12 +17,23 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'event',
+        'email',
+        'total',
+        'status',
+        'expires_at',
+        'created_at'
+    )
+    list_display_links = ('id', 'event', 'email')
+    list_filter = ('status', 'event')
+    search_fields = ('email',)
     inlines = [OrderItemInline]
 
-# Register your models here.
+
+
 admin.site.register(Event, EventAdmin)
 admin.site.register(TicketType)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem)
-
-

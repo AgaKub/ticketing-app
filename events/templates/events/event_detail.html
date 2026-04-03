@@ -5,6 +5,8 @@
 
 <h2>Tickets</h2>
 
+<p>Maximum 10 tickets per ticket type in one order. If you need more, please place a separate order.</p>
+
 {% for item in ticket_data %}
     {% with ticket=item.ticket save=item.save_percent %}
         <div style="margin-bottom:20px; border:1px solid #ccc; padding:10px;">
@@ -19,7 +21,7 @@
             {% if ticket.is_active %}
                 <p>Available: {{ ticket.quantity }}</p>
 
-                <div class="ticket-box" data-ticket-name="{{ ticket.name }}">
+                <div class="ticket-box" data-ticket-name="{{ ticket.name }}" data-max="{% if ticket.quantity < 10 %}{{ ticket.quantity }}{% else %}10{% endif %}">
                     <button type="button" onclick="decrease(this)">-</button>
                     <span class="qty">0</span>
                     <button type="button" onclick="increase(this)">+</button>
@@ -57,12 +59,16 @@ function increase(btn) {
     let box = btn.parentElement;
     let qtyEl = box.querySelector('.qty');
     let qty = parseInt(qtyEl.innerText);
+    let max = parseInt(box.dataset.max);
 
-    qty = qty + 1;
-    qtyEl.innerText = qty;
+    if (qty < max) {
+        qty = qty + 1;
+        qtyEl.innerText = qty;
+    }
 
     updateCheckoutButton();
 }
+
 
 function decrease(btn) {
     let box = btn.parentElement;
