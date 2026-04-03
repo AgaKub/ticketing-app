@@ -712,3 +712,17 @@ For the MVP direction, the planned reservation window is 10 minutes.
 A maximum ticket limit per order will also be introduced to reduce the risk of one unfinished order blocking too much inventory.
 
 
+### Step 5.8 – Add Backend Validation for Ticket Selection Limits
+
+The payment step was updated to enforce ticket selection limits in the backend.
+
+In addition to the buyer-facing selector limits, the backend now validates that:
+
+- the selected quantity does not exceed available ticket stock
+- the selected quantity does not exceed the maximum allowed quantity per ticket type in one order (10)
+
+If either rule is broken, the purchase flow is stopped and redirected.
+
+This ensures that ticket selection rules are enforced even if frontend restrictions are bypassed.
+
+

@@ -1,9 +1,9 @@
 import email
 
 from django.shortcuts import render, redirect
-from .models import Event, Order, TicketType, OrderItem
 from django.utils import timezone
-from datetime import timedelta  
+from datetime import timedelta
+from .models import Event, TicketType, Order, OrderItem
 
 
 def event_list(request):
@@ -92,7 +92,7 @@ def release_expired_orders():
     )
 
     print("EXPIRED ORDERS FOUND:", expired_orders.count())
-
+    
     for order in expired_orders:
         items = OrderItem.objects.filter(order=order)
 
@@ -122,6 +122,11 @@ def payment_step(request):
             try:
                 ticket = TicketType.objects.get(name=key)
                 qty = int(value)
+
+                # backend safety limit
+                if qty > 10 or qty > ticket.quantity:
+                    return redirect('/')
+
                 subtotal = ticket.price * qty
                 total += subtotal
 
@@ -157,7 +162,7 @@ def payment_step(request):
         total=total,
         status='pending',
         expires_at=timezone.now() + timedelta(minutes=10)
-         )
+    )
 
     # create order items + reduce stock
     for item in selected_tickets:
@@ -182,7 +187,6 @@ def payment_step(request):
         'total': total,
         'order': order
     })
-
 
 
 def privacy_policy(request):
