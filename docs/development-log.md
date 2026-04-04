@@ -725,4 +725,18 @@ If either rule is broken, the purchase flow is stopped and redirected.
 
 This ensures that ticket selection rules are enforced even if frontend restrictions are bypassed.
 
+### Step 5.9 – Trigger Reservation Cleanup from Buyer Flow
+
+The expired-order cleanup logic was connected to buyer-facing views so that reservation status is refreshed during normal use of the application.
+
+The cleanup function is now triggered when the buyer opens the event page.
+
+This allows the system to:
+
+- detect expired pending orders
+- release reserved tickets back to stock
+- mark those orders as expired
+
+Testing confirmed that the cleanup logic works correctly when triggered from the buyer flow and that the updated status becomes visible in the admin dashboard after refresh.
+
 

@@ -12,7 +12,9 @@ def event_list(request):
     return render(request, 'events/event_list.html', {'events': events})
 
 
+
 def event_detail(request, event_id):
+    release_expired_orders()
     event = Event.objects.get(id=event_id)
     tickets = event.ticket_types.all()
 
@@ -85,6 +87,8 @@ def email_step(request):
 
 
 def release_expired_orders():
+    print("CLEANER RAN")
+    
     expired_orders = Order.objects.filter(
         status='pending',
         expires_at__isnull=False,
