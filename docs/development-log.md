@@ -739,4 +739,14 @@ This allows the system to:
 
 Testing confirmed that the cleanup logic works correctly when triggered from the buyer flow and that the updated status becomes visible in the admin dashboard after refresh.
 
+### Step 5.10 – Replace Silent Redirects with Clear Buyer Feedback
+
+The purchase flow currently uses redirects when ticket selection is invalid, for example when the requested quantity exceeds stock availability or exceeds the maximum allowed quantity.
+
+While this protects the system technically, it does not explain the problem to the buyer.
+
+The next improvement is to replace silent redirects with clear feedback messages that tell the buyer what went wrong and what action to take.
+
+This will improve trust, reduce confusion, and make the purchase flow easier to complete.
+
 
