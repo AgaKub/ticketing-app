@@ -762,4 +762,12 @@ The event page displays a clear message when:
 
 This improves trust and makes the buyer flow easier to understand and complete.
 
+### Step 5.12 – Redirect Buyer to the Correct Event After Validation Errors
+
+The purchase flow was improved so that backend validation errors no longer redirect to a hardcoded event page.
+
+Instead, the system now uses the event connected to the selected ticket type and redirects the buyer back to the correct event automatically.
+
+This makes the flow consistent and prepares the application for multiple events running in the same system.
+
 

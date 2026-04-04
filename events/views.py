@@ -129,11 +129,11 @@ def payment_step(request):
 
                 # backend safety limit
                 if qty > 10:
-                    return redirect('/event/1/?error=max_limit')
+                    return redirect(f'/event/{ticket.event.id}/?error=max_limit')
 
                 if qty > ticket.quantity:
-                    return redirect('/event/1/?error=not_enough_tickets')
-
+                    return redirect(f'/event/{ticket.event.id}/?error=not_enough_tickets')
+                
                 subtotal = ticket.price * qty
                 total += subtotal
 
