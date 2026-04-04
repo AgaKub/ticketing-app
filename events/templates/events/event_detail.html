@@ -3,6 +3,18 @@
 <p>{{ event.venue }}</p>
 <p>{{ event.date }}</p>
 
+{% if request.GET.error == "max_limit" %}
+    <p style="color:red;">
+        Maximum 10 tickets per ticket type in one order. If you need more, please place a separate order.
+    </p>
+{% endif %}
+
+{% if request.GET.error == "not_enough_tickets" %}
+    <p style="color:red;">
+        Not enough tickets are available for your selection.
+    </p>
+{% endif %}
+
 <h2>Tickets</h2>
 
 

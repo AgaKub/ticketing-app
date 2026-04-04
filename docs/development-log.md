@@ -749,4 +749,17 @@ The next improvement is to replace silent redirects with clear feedback messages
 
 This will improve trust, reduce confusion, and make the purchase flow easier to complete.
 
+### Step 5.11 – Add Clear Buyer Error Messages
+
+The purchase flow was updated to give the buyer clear feedback when ticket selection is invalid.
+
+Instead of silently redirecting to the homepage, the backend now returns the buyer to the event page with an error indicator in the URL.
+
+The event page displays a clear message when:
+
+- the maximum ticket limit per ticket type is exceeded
+- the requested number of tickets is greater than available stock
+
+This improves trust and makes the buyer flow easier to understand and complete.
+
 
