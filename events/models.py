@@ -12,14 +12,20 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+
 class TicketType(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='ticket_types')
-    quantity = models.IntegerField()
+    total_quantity = models.IntegerField()
+    available_quantity = models.IntegerField()
     is_active = models.BooleanField(default=True)
 
-    
+    def save(self, *args, **kwargs):
+        if self.available_quantity is None:
+            self.available_quantity = self.total_quantity
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.name} - {self.event.name}"
     

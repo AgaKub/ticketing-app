@@ -771,3 +771,23 @@ Instead, the system now uses the event connected to the selected ticket type and
 This makes the flow consistent and prepares the application for multiple events running in the same system.
 
 
+### Step 6.1 – Refactor Ticket Stock into Total and Available Quantity
+
+The TicketType model was refactored so that stock is now represented with two separate fields:
+
+- total_quantity
+- available_quantity
+
+This replaces the previous single quantity field, which mixed original stock and remaining stock in a confusing way.
+
+The new structure allows the system to represent:
+
+- original ticket capacity per ticket type
+- remaining availability
+- sold quantity, calculated as total_quantity minus available_quantity
+
+The buyer flow and backend stock checks were updated to use available_quantity.
+
+The admin view was also improved to show total stock, available stock, and sold quantity clearly for promoters.
+
+

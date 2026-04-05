@@ -30,7 +30,7 @@
             {% endif %}
 
             {% if ticket.is_active %}
-                <p>Available: {{ ticket.quantity }}</p>
+                <p>Available: {{ ticket.available_quantity }}</p>
 
                 <div class="ticket-box" data-ticket-name="{{ ticket.name }}" data-max="{% if ticket.quantity < 10 %}{{ ticket.quantity }}{% else %}10{% endif %}">
                     <button type="button" onclick="decrease(this)">-</button>

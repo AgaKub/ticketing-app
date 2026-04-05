@@ -32,8 +32,26 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [OrderItemInline]
 
 
+class TicketTypeAdmin(admin.ModelAdmin):
+    list_display = (
+        'name',
+        'event',
+        'price',
+        'total_quantity',
+        'available_quantity',
+        'sold_quantity',
+        'is_active'
+    )
 
+    def sold_quantity(self, obj):
+        return obj.total_quantity - obj.available_quantity
+
+    sold_quantity.short_description = 'Sold'
+
+    
+
+
+admin.site.register(TicketType, TicketTypeAdmin)
 admin.site.register(Event, EventAdmin)
-admin.site.register(TicketType)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderItem)

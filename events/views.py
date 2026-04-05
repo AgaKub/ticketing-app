@@ -131,9 +131,9 @@ def payment_step(request):
                 if qty > 10:
                     return redirect(f'/event/{ticket.event.id}/?error=max_limit')
 
-                if qty > ticket.quantity:
+                if qty > ticket.available_quantity:
                     return redirect(f'/event/{ticket.event.id}/?error=not_enough_tickets')
-                
+
                 subtotal = ticket.price * qty
                 total += subtotal
 
@@ -176,8 +176,8 @@ def payment_step(request):
         ticket = item['ticket_obj']
         qty = item['qty']
 
-        if ticket.quantity >= qty:
-            ticket.quantity = ticket.quantity - qty
+        if ticket.available_quantity >= qty:
+            ticket.available_quantity = ticket.available_quantity - qty
             ticket.save()
 
             OrderItem.objects.create(
