@@ -28,14 +28,22 @@ class TicketType(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.event.name}"
-    
+
+
+
+ORDER_STATUS_CHOICES = [
+    ('pending', 'Pending'),
+    ('paid', 'Paid'),
+    ('expired', 'Expired')
+]
+
 
 class Order(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
     email = models.EmailField()
     total = models.DecimalField(max_digits=8, decimal_places=2)
 
-    status = models.CharField(max_length=20, default='pending')
+    status = models.CharField(max_length=20, choices=ORDER_STATUS_CHOICES, default='pending')
     expires_at = models.DateTimeField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -43,7 +51,8 @@ class Order(models.Model):
     def __str__(self):
         return f"Order {self.id} - {self.email}"
     
-    
+
+ 
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
@@ -52,5 +61,4 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.ticket_type.name} x {self.quantity}"
-    
     

@@ -155,6 +155,7 @@ def payment_step(request):
     if not selections or not email:
         return redirect('/')
 
+    
     event = selected_tickets[0]['ticket_obj'].event
 
     # check all tickets belong to the same event
@@ -177,16 +178,14 @@ def payment_step(request):
         qty = item['qty']
 
         if ticket.available_quantity >= qty:
-            ticket.available_quantity = ticket.available_quantity - qty
-            ticket.save()
-
             OrderItem.objects.create(
                 order=order,
                 ticket_type=ticket,
                 quantity=qty
             )
+        
         else:
-            return redirect('/')
+            return redirect(f'/event/{ticket.event.id}/?error=not_enough_tickets')
 
     return render(request, 'events/payment.html', {
         'selections': selections,

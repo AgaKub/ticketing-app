@@ -810,6 +810,16 @@ The system will now move toward clearer logic:
 
 This change will make the ticketing flow closer to real production logic and prepare the system for future payment integration.
 
+### Step 6.4 – Stop Reducing Stock on Pending Orders
+
+The ticketing logic was updated so that creating a pending order no longer reduces available ticket quantity.
+
+Pending orders now represent reservations rather than completed sales.
+
+This separates reservation from completed purchase and prepares the system for proper payment handling.
+
+The next step will be to account for reserved tickets in pending orders when calculating availability, to prevent overselling.
+
 
 
 
