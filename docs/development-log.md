@@ -790,4 +790,26 @@ The buyer flow and backend stock checks were updated to use available_quantity.
 
 The admin view was also improved to show total stock, available stock, and sold quantity clearly for promoters.
 
+### Step 6.2 – Separate Reservation from Completed Sale
+
+The next stage of the ticketing logic is to separate temporary reservation from completed sale.
+
+At the current stage, available ticket quantity is reduced immediately when a pending order is created.
+
+This is useful for early testing, but it mixes two different business states:
+
+- reservation
+- completed purchase
+
+The system will now move toward clearer logic:
+
+- pending orders will represent temporary reservation
+- paid orders will represent completed sale
+- expired orders will release reserved tickets
+- available ticket quantity should reflect active reservations and completed sales in a controlled way
+
+This change will make the ticketing flow closer to real production logic and prepare the system for future payment integration.
+
+
+
 
