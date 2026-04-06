@@ -36,10 +36,26 @@ def event_detail(request, event_id):
                 ((general_admission_ticket.price - ticket.price) / general_admission_ticket.price) * 100
             )
 
-        ticket_data.append({
-            'ticket': ticket,
-            'save_percent': save_percent
-        })
+        reserved_qty = 0
+        pending_items = OrderItem.objects.filter(
+            ticket_type=ticket,
+            order__status='pending',
+            order__expires_at__isnull=False,
+            order__expires_at__gt=timezone.now()
+    )
+
+    for pending_item in pending_items:
+        reserved_qty += pending_item.quantity
+
+    effective_available = ticket.available_quantity - reserved_qty
+
+
+    ticket_data.append({
+    'ticket': ticket,
+    'save_percent': save_percent,
+    'effective_available': effective_available
+    })
+
 
     return render(request, 'events/event_detail.html', {
         'event': event,

@@ -833,5 +833,21 @@ This prevents overselling when stock has not yet been permanently reduced for un
 
 The next step will be to reflect the same reservation-aware availability in the buyer-facing event page.
 
+### Step 6.6 – Show Reservation-Aware Availability in Buyer Flow
+
+The buyer-facing event page was updated to display real availability based on active reservations.
+
+For each ticket type, the system now calculates effective availability as:
+
+- available ticket quantity
+- minus tickets currently held by active pending orders
+
+This effective availability is now used in the event page to:
+
+- display the number of tickets still available
+- limit the quantity selector
+
+This aligns the buyer-facing view with the backend validation logic and prevents misleading stock information during active reservation periods.
+
 
 
