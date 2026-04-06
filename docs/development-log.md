@@ -849,5 +849,18 @@ This effective availability is now used in the event page to:
 
 This aligns the buyer-facing view with the backend validation logic and prevents misleading stock information during active reservation periods.
 
+### Step 6.7 - Prepare Paid Order Flow
+
+The next step in the purchase logic is to turn the payment step into a real order status transition.
+
+At the current stage, the order summary page displays a Pay now" button, but pressing it does not yet change the order state.
+
+The system will now move toward a first completed-sale flow where:
+- a pending order becomes paid
+- the paid status represents completed purchase
+- reservation and completed sale become clearly separated in the order lifecycle.
+
+This step prepares the application for future payment gateway integration while while already introducing the correct business transition in the backend.
+
 
 
