@@ -820,6 +820,18 @@ This separates reservation from completed purchase and prepares the system for p
 
 The next step will be to account for reserved tickets in pending orders when calculating availability, to prevent overselling.
 
+### Step 6.5 – Add Reservation-Aware Availability Validation
+
+The backend validation logic was improved so that pending reservations are now taken into account when checking ticket availability.
+
+When the buyer attempts to continue to checkout, the system now calculates effective availability as:
+
+- available ticket quantity
+- minus tickets currently held by active pending orders
+
+This prevents overselling when stock has not yet been permanently reduced for unpaid reservations.
+
+The next step will be to reflect the same reservation-aware availability in the buyer-facing event page.
 
 
 

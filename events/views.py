@@ -130,10 +130,25 @@ def payment_step(request):
                 # backend safety limit
                 if qty > 10:
                     return redirect(f'/event/{ticket.event.id}/?error=max_limit')
+                
+                reserved_qty = 0
+                pending_items = OrderItem.objects.filter(
+                    ticket_type=ticket, 
+                    order__status='pending',
+                    order_expires_at__isnull=False,
+                    order__expires_at__gt=timezone.now()
+                )
 
-                if qty > ticket.available_quantity:
+
+                for pending_item in pending_items:
+                    reserved_qty += pending_item.quantity
+
+                effective_available = ticket.available_quantity - reserved_qty
+
+                if qty > effective_available:
                     return redirect(f'/event/{ticket.event.id}/?error=not_enough_tickets')
 
+                
                 subtotal = ticket.price * qty
                 total += subtotal
 
