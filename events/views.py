@@ -1,6 +1,6 @@
 import email
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from datetime import timedelta
 from .models import Event, TicketType, Order, OrderItem
@@ -23,7 +23,7 @@ def event_detail(request, event_id):
         if ticket.name.lower() == "general admission":
             general_admission_ticket = ticket
             break
-        
+
     print("GA ticket:", general_admission_ticket)
 
     ticket_data = []
@@ -42,20 +42,18 @@ def event_detail(request, event_id):
             order__status='pending',
             order__expires_at__isnull=False,
             order__expires_at__gt=timezone.now()
-    )
+        )
 
-    for pending_item in pending_items:
-        reserved_qty += pending_item.quantity
+        for pending_item in pending_items:
+            reserved_qty += pending_item.quantity
 
-    effective_available = ticket.available_quantity - reserved_qty
+        effective_available = ticket.available_quantity - reserved_qty
 
-
-    ticket_data.append({
-    'ticket': ticket,
-    'save_percent': save_percent,
-    'effective_available': effective_available
-    })
-
+        ticket_data.append({
+            'ticket': ticket,
+            'save_percent': save_percent,
+            'effective_available': effective_available
+        })
 
     return render(request, 'events/event_detail.html', {
         'event': event,
@@ -118,7 +116,7 @@ def release_expired_orders():
 
         for item in items:
             ticket = item.ticket_type
-            ticket.quantity += item.quantity
+            ticket.available_quantity += item.quantity
             ticket.save()
 
         order.status = 'expired'
@@ -151,7 +149,7 @@ def payment_step(request):
                 pending_items = OrderItem.objects.filter(
                     ticket_type=ticket, 
                     order__status='pending',
-                    order_expires_at__isnull=False,
+                    order__expires_at__isnull=False,
                     order__expires_at__gt=timezone.now()
                 )
 
@@ -229,3 +227,25 @@ def payment_step(request):
 def privacy_policy(request):
     return render(request, 'events/privacy_policy.html')
 
+
+
+def pay_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+
+    if order.status != 'pending':
+        return redirect('/')
+
+    order.status = 'paid'
+    order.save()
+
+    items = OrderItem.objects.filter(order=order)
+
+    for item in items:
+        ticket = item.ticket_type
+        ticket.available_quantity -= item.quantity
+        ticket.save()
+
+    return render(request, 'events/success.html', {
+        'order': order,
+        'items': items
+    })

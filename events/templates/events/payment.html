@@ -12,6 +12,10 @@
 
 <p>Email: {{ email }}</p>
 
-<br><br>
+<!-- Debug (remove in production) -->
 
-<button type="button">Pay now</button>
+<p>Order ID debug: {{ order.id }}</p>
+
+<br>
+
+<a href="/pay/{{ order.id }}/">Pay Now</a>

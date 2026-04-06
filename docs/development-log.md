@@ -862,5 +862,18 @@ The system will now move toward a first completed-sale flow where:
 
 This step prepares the application for future payment gateway integration while while already introducing the correct business transition in the backend.
 
+### Step 6.8 - Prepare email Comfirmation Afret Payment
+
+The next step in ticketing flow is to send a confirmation email after a succesfull payment
+
+At this stage, the order status changes to paid and the success page is displayed correctly.
+
+The system will now move toward sending a buyer confirmation email that includes:
+
+- payment confirmation
+-order details
+-purchased ticket information
+
+This step will make the purchase flow feel more complete and prepare teh application for future ticket delivery by email.
 
 

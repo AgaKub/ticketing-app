@@ -1,0 +1,20 @@
+<h1>Payment Successful</h1>
+<p>Thank you for your purchase! Your order has been successfully processed.</p>
+
+<h2>Order Details:</h2>
+<ul>
+    <li><strong>Order ID:</strong> {{ order.id }}</li>
+    <li><strong>Email:</strong> {{ order.email }}</li>
+    <li><strong>Total Paid:</strong> £{{ order.total }}</li>
+    <li><strong>Status:</strong> {{ order.status }}</li>
+</ul>
+
+<h2>Tickets Purchased:</h2>
+
+    {% for item in items %}
+        <p>{{ item.quantity }} × {{ item.ticket_type.name }} (£{{ item.ticket_type.price }})</p>
+    {% endfor %}
+
+<br>
+
+<a href='/'>Back to Events</a>
